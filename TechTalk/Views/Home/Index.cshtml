@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TechTalk.ViewModels.Product>
+@{
+    ViewBag.Title = "Home - Products";
+}
+
+<h2 class="text-center my-4">Featured Products</h2>
+
+<div class="container-fluid">
+    @foreach (var categoryGroup in Model.GroupBy(p => p.ProductCategory.ProCatName))
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <h4>@categoryGroup.Key</h4>
+            </div>
+            <div class="col-12">
+                <div class="owl-carousel">
+                    @foreach (var item in categoryGroup)
+                    {
+                        <div class="item">
+                            <div class="card shadow-sm">
+                                <img src="@Url.Content(item.PictureUrl)" class="card-img-top img-fluid" alt="@item.ProductName">
+                                <div class="card-body">
+                                    <h6 class="card-title">@item.ProductName</h6>
+                                    <p class="card-text">
+                                        <strong>Category:</strong> @item.ProductCategory.ProCatName <br>
+                                        <strong>Sub Category:</strong> @item.ProductSubCategory.ProSubCatName <br>
+                                        <strong>Price:</strong> $@item.Price.ToString("0.00") <br>
+                                        <strong>Stock Count:</strong> @item.StockQuantity
+                                    </p>
+                                    <div class="text-center">
+                                        <a href="@Url.Action("AddToCart", "Cart", new { id = item.ProductId })" class="btn btn-sm btn-primary mt-2" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 5
+                    }
+                }
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+}

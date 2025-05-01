@@ -1,0 +1,117 @@
+﻿/* Navbar styles */
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: bold;
+    color: cornflowerblue; /* Navbar brand color */
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    color: cornflowerblue; /* Navbar links color */
+    transition: all 0.3s ease;
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus {
+        color: #17a2b8; /* Hover and focus color for navbar links */
+    }
+
+.dropdown-menu {
+    background-color: cornflowerblue; /* Dropdown menu background color */
+}
+
+.dropdown-item {
+    color: cornflowerblue;
+}
+
+    .dropdown-item:hover {
+        background-color: cornflowerblue; /* Hover color for dropdown items */
+    }
+
+.form-control {
+    width: 250px;
+    border-radius: 20px;
+}
+
+.btn-outline-success {
+    border-radius: 20px;
+    color: #17a2b8; /* Outline button text color */
+    border-color: #17a2b8; /* Outline button border color */
+}
+
+    .btn-outline-success:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+        color: cornflowerblue; /* Hover color for outline button */
+    }
+
+/* Footer styles */
+.footer {
+    background-color: #343a40; /* Footer background color */
+    color:cornflowerblue; /* Footer text color */
+    font-size: 0.9rem;
+}
+
+/* Additional custom styles for attractive design */
+.card {
+    background-color: #f8f9fa; /* Card background color */
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+.card-title {
+    color: #343a40; /* Card title color */
+}
+
+.card-text {
+    color: #6c757d; /* Card text color */
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #007bff; /* Primary button background color */
+    border-color: #007bff; /* Primary button border color */
+    border-radius: 20px;
+}
+
+    .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+.btn-outline-info {
+    color: #17a2b8; /* Info button text color */
+    border-color: #17a2b8; /* Info button border color */
+    border-radius: 20px;
+}
+
+    .btn-outline-info:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+        color: cornflowerblue; /* Hover color for info button */
+    }
+
+/* Additional custom styles for specific elements */
+.jumbotron {
+    background-color: #007bff; /* Jumbotron background color */
+    color: cornflowerblue; /* Jumbotron text color */
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+    .jumbotron h1 {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .jumbotron p {
+        font-size: 1.2rem;
+    }

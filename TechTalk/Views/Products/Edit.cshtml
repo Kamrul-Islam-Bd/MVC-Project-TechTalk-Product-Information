@@ -1,0 +1,114 @@
+﻿@model TechTalk.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="row">
+    <div class="col-12">
+        <h4 class="display-4">Edit Products</h4>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductId)
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.ProductName,  htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control form-control-sm" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.ProductDescription, "Picture Description", htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.ProductDescription, new { @class = "form-control form-control-sm" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.ProductDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.Price, htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.Price, new { @class = "form-control form-control-sm" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.StockQuantity, "Stock Count", htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.StockQuantity, new { @class = "form-control form-control-sm", type = "number" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.StockQuantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.PictureUrl, "Picture Update", htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.PictureUrl, new { @class = "form-control form-control-sm", type = "file" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.PictureUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.ProductCategoryId, "Category", htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.ProductCategoryId, new { @class = "form-control form-control-sm" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.ProductCategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.ProductSubCategoryId, "Sub Category", htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.ProductSubCategoryId, new { @class = "form-control form-control-sm" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.ProductSubCategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            @Html.LabelFor(x => x.ProgramId, "Program", htmlAttributes: new { @class = "col-form-label col-form-label-sm col-3" })
+            <div class="col-7">
+                @Html.TextBoxFor(x => x.ProgramId, new { @class = "form-control form-control-sm" })
+            </div>
+            <div class="col-2">
+                @Html.ValidationMessageFor(x => x.ProgramId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+    
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

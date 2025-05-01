@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TechTalk.ViewModels.ProductSubCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2 class="my-4">Sub Categories</h2>
+
+    <p>
+        <a href="@Url.Action("Create", "ProductSubCategories")" class="btn btn-primary">Create New Sub-Category</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ProductCategory.ProCatName)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProSubCatName)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ProductCategory.ProCatName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProSubCatName)</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="@Url.Action("Edit", new { id = item.ProductSubCategoryId })" class="btn btn-sm btn-outline-primary" title="Edit">
+                                    <i class="fa fa-pencil"></i> Edit
+                                </a>
+                                
+                                <a href="@Url.Action("Delete", new { id = item.ProductSubCategoryId })" class="btn btn-sm btn-outline-danger" title="Delete">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    
+</div>

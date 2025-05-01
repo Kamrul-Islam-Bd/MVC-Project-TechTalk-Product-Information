@@ -1,0 +1,5 @@
+﻿@model TechTalk.Models.Cart
+
+<p>Your Cart: @Model.CartItems.Count item(s)</p>
+<p>Total: @Model.CartItems.Sum(item => item.Product.Price * item.Quantity).ToString("c")</p>
+

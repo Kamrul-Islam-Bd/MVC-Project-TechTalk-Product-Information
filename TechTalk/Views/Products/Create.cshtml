@@ -1,0 +1,109 @@
+﻿@model TechTalk.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "Create Product";
+}
+
+<h2>Create Product</h2>
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title display-4">Product Information</h4>
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter product name" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter product description" } })
+                    @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter price" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.StockQuantity, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.StockQuantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter stock count" } })
+                    @Html.ValidationMessageFor(model => model.StockQuantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.PictureFile, "Picture", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    <input type="file" name="PictureFile" class="form-control-file" />
+                    @Html.ValidationMessageFor(model => model.PictureFile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.Label("Category", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-5 mb-2">
+                    @Html.DropDownListFor(model => model.ProductCategoryId, (IEnumerable<SelectListItem>)ViewBag.ProductCategories, "Select Category", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProductCategoryId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-5 mb-2">
+                    @Html.TextBoxFor(model => model.ProductCategoryId, new { @class = "form-control", placeholder = "Enter new category" })
+                    @Html.ValidationMessageFor(model => model.ProductCategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.Label("Sub Category", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-5 mb-2">
+                    @Html.DropDownListFor(model => model.ProductSubCategoryId, (IEnumerable<SelectListItem>)ViewBag.ProductSubCategories, "Select Sub Category", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProductSubCategoryId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-5 mb-2">
+                    @Html.TextBoxFor(model => model.ProductSubCategoryId, new { @class = "form-control", placeholder = "Enter new sub category" })
+                    @Html.ValidationMessageFor(model => model.ProductSubCategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.Label("Program", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-5 mb-2">
+                    @Html.DropDownListFor(model => model.ProgramId, (IEnumerable<SelectListItem>)ViewBag.Programs, "Select Program", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProgramId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-5 mb-2">
+                    @Html.TextBoxFor(model => model.ProgramId, new { @class = "form-control", placeholder = "Enter new program" })
+                    @Html.ValidationMessageFor(model => model.ProgramId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Create</button>
+                    <a href="@Url.Action("Index", "ProductCategories")" class="btn btn-secondary ml-2">Back to Category List</a>
+                    <a href="@Url.Action("Index", "ProductSubCategories")" class="btn btn-secondary ml-2">Back to Sub Category List</a>
+                    <a href="@Url.Action("Index", "Programs")" class="btn btn-secondary ml-2">Back to Program List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

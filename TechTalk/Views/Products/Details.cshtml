@@ -1,0 +1,59 @@
+﻿@model TechTalk.ViewModels.Product
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2>@Model.ProductName</h2>
+    <img src="@Model.PictureUrl" alt="@Model.ProductName" class="img-fluid" />
+    <p>@Model.ProductDescription</p>
+    <p>Price: @Model.Price.ToString("C")</p>
+    <p>Stock Quantity: @Model.StockQuantity</p>
+    <p>Category: @Model.ProductCategory.ProCatName</p>
+    <p>Subcategory: @Model.ProductSubCategory.ProSubCatName</p>
+    <p>Program: @Model.Program.ProgramName</p>
+    <p>Average Rating: @Model.AverageRating (based on @Model.TotalRatings ratings)</p>
+
+    <h3>Customer Reviews</h3>
+    @if (Model.Reviews.Any())
+    {
+        foreach (var review in Model.Reviews)
+        {
+            <div class="review">
+                <h4>@review.ReviewerName</h4>
+                <p>@review.Content</p>
+                <p>Rating: @review.Rating / 5</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No reviews yet. Be the first to review this product!</p>
+    }
+
+    <h3>Add a Review</h3>
+    @using (Html.BeginForm("AddReview", "Product", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.ProductId)
+        <div class="form-group">
+            @Html.Label("ReviewerName", "Name")
+            @Html.TextBox("ReviewerName", null, new { @class = "form-control", placeholder = "Your Name" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Content", "Review")
+            @Html.TextArea("Content", null, new { @class = "form-control", placeholder = "Your Review" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Rating", "Rating")
+            @Html.DropDownList("Rating", new SelectList(Enumerable.Range(1, 5)), "Select Rating", new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    }
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

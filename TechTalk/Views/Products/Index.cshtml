@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TechTalk.ViewModels.Product>
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Products</h2>
+
+<p>
+    @Html.ActionLink("Create New Product", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<div class="table-responsive">
+    <!-- Responsive table wrapper -->
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <!-- Dark header -->
+            <tr>
+                <th style="width: 10%;">Picture</th>
+                <th style="width: 15%;">Product Name</th>
+                <th style="width: 20%;">Description</th>
+                <th style="width: 10%;">Category</th>
+                <th style="width: 10%;">Sub Category</th>
+                <th style="width: 10%;">Program</th>
+                <th style="width: 10%;">Price</th>
+                <th style="width: 10%;">Stock Count</th>
+                <th style="width: 15%;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Index", "Home")">
+                            <!-- Link to Home/Index -->
+                            <img src="@item.PictureUrl" class="img-thumbnail" style="max-width: 100px; height: auto;" />
+                        </a>
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProductCategory.ProCatName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProductSubCategory.ProSubCatName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Program.ProgramName)</td>
+                    <td>$@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StockQuantity)</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Product Actions">
+                            <a href="@Url.Action("Edit", "Products", new {id=item.ProductId})" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <i class="fa fa-pencil"></i> Edit
+                            </a>
+                            <a href="@Url.Action("Details", "Products", new {id=item.ProductId})" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <i class="fa fa-pencil"></i> Details
+                            </a>
+                            <a href="@Url.Action("Delete", "Products", new {id=item.ProductId})" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary ml-2">Back to Home</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TechTalk.ViewModels.ProductCategory>
+@{
+    ViewBag.Title = "Product Categories";
+    var exampleItem = Model.FirstOrDefault();
+}
+
+<h2>Product Categories</h2>
+
+<p>
+    @Html.ActionLink("Create New Category", "Create")
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayFor(model => exampleItem.ProCatName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProCatName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductCategoryId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductCategoryId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @Html.ActionLink("Back to Products", "Create", "Products", null, new { @class = "btn btn-secondary" })
+</div>
